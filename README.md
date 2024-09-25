@@ -2,10 +2,16 @@
 Windows:
 
 1. Установка виртуальной среды venv:
-pip -m venv venv
+python -m venv venv
 
 2. Активация виртуальной среды venv:
 venv\Scripts\activate
+
+#Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
+#на винде помогла эта команда перед тем как активировать среду в текущем терминале powershell
+
+#а чтобы всегда работала 2 команда в powershell, нужно исполнить эту команду Set-ExecutionPolicy RemoteSigned (не проверял)
+
 
 3. Установка зависимостей проекта:
 pip install -r requirements.txt
