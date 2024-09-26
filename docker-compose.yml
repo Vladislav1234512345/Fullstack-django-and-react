@@ -1,0 +1,28 @@
+version: "3.8"
+services:
+  frontend:
+    build:
+      context: ./django_project/frontend
+      dockerfile: Dockerfile
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+
+  backend:
+    build: 
+      context: ./django_project/django_project
+      dockerfile: Dockerfile
+    restart: always
+    ports:
+      - "8000:8000"
+    command: >
+      sh -c "python manage.py runserver 0.0.0.0:8000"
+    # Для статики мы подключаем два volume (чтобы при перезапуске наши данные не пропадали)), создадим их ниже.
+    volumes:
+      - django_static_volume:/usr/src/app/static
+      - django_media_volume:/usr/src/app/media
+
+volumes:
+  django_static_volume:
+  django_media_volume:
